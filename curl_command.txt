@@ -1,0 +1,15 @@
+curl -X GET "https://api-v2.solscan.io/v2/account/transaction?address=F7RkX6Y1qTfBqoX5oHoZEgrG1Dpy55UZ3GfWwPbM58nQ&page_size=10" \
+  -H "accept: application/json, text/plain, */*" \
+  -H "accept-language: en-US,en;q=0.9" \
+  -H "if-none-match: W/\"21a8-gQn/xm+X5A+ZE1KRe5+y98fWriI\"" \
+  -H "origin: https://solscan.io" \
+  -H "priority: u=1, i" \
+  -H "referer: https://solscan.io/" \
+  -H "sec-ch-ua: \"Google Chrome\";v=\"137\", \"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"" \
+  -H "sec-ch-ua-mobile: ?0" \
+  -H "sec-ch-ua-platform: \"Windows\"" \
+  -H "sec-fetch-dest: empty" \
+  -H "sec-fetch-mode: cors" \
+  -H "sec-fetch-site: same-site" \
+  -H "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" \
+  -H "Cookie: _ga=GA1.1.509847261.1750787802; _ga_PS3V7B7KV0=GS2.1.s1751127788$o3$g1$t1751128175$j60$l0$h0" 
