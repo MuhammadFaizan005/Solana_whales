@@ -36,6 +36,7 @@ def get_transaction_history(account_address,api_key):
         
         return transactions
     return None
+
 def get_token_accounts_by_mint(mint_address, token_price):
     # url = "https://api.devnet.solana.com"
     api_key = os.getenv("HELIUS_API_KEY_2")
@@ -516,6 +517,8 @@ def get_trending_solana_meme_coins_optimized(delay=5):
                 time.sleep(delay)
 
     return solana_trending_meme
+
+
 def update_or_add_coin_to_cache(trending_coins):
     """Update the price of an existing coin or add a new coin to the cache."""
     # Load existing data from the JSON file
