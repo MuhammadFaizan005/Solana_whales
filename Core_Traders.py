@@ -185,6 +185,8 @@ def calculate_pnl(transactions, rate, sol_price):
                 pnl += balance_change / 1e9  # Convert to SOL
 
     return pnl
+
+
 def calculate_win_ratio(transactions):
     """Calculate more accurate win ratio based on transactions."""
     total_wins = 0
@@ -216,6 +218,8 @@ def calculate_win_ratio(transactions):
         win_ratio = 0.0
         
     return round(win_ratio, 3)
+
+
 def calculate_daily_returns(transactions, rate, initial_portfolio_value):
     """Calculate more accurate daily returns from transaction history."""
     daily_returns = []
@@ -361,6 +365,8 @@ def calculate_factors(transactions, rate, initial_portfolio_value, sol_price):
     date_range = get_transaction_date_range(filtered_transactions)
 
     return total_pnl, win_ratio, sharpe_ratio, sortino_ratio, date_range
+
+
 def get_solana_coingecko_data_by_names(coin_names):
     """
     Retrieves CoinGecko data and Solana addresses for a list of coin names.

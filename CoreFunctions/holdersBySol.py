@@ -1,12 +1,16 @@
 import requests
 import random
 import time
-def SolScan_holders_fetch(address = None,token_price = 0):
+from tqdm import tqdm
+def SolScan_holders_fetch(address = None,token_price = 0,StartPage=1,EndPage=1,rangeStart=50000, rangeEnd=200000,verbose=False):
     try:
         final_list = []
-        for i in range(10):
+        if StartPage == 0:
+            StartPage+=1
+        for i in tqdm(range(StartPage,EndPage),colour="BLUE"):
             sec = random.randint(2,5)
-            print(f"Waiting for {sec} Seconds...")
+            if verbose:
+                print(f"Waiting for {sec} Seconds... (Page {i+1})")
             time.sleep(sec)
             url = f"https://api-v2.solscan.io/v2/token/holders?address={address}&page_size=40&page={i+1}"
             payload = {}
@@ -29,17 +33,30 @@ def SolScan_holders_fetch(address = None,token_price = 0):
             response = requests.request("GET", url, headers=headers, data=payload)
             if response.status_code == 200:
                 response_json = response.json()
-                for holder in response_json['data']:
-                    TokenHoldingPrice = (holder['amount']/(10**holder['decimals']))*token_price
-                    if   TokenHoldingPrice >= 50000 and TokenHoldingPrice <=  200000:
-                        final_list.append
-                        (
+                if 'data' in response_json:
+                    for holder in response_json['data']:
+                        TokenHoldingPrice = (holder['amount']/(10**holder['decimals']))*token_price
+                        if   TokenHoldingPrice >= rangeStart and TokenHoldingPrice <=  rangeEnd:
+                            if verbose:
+                                print(f"Got Account : {holder['owner']}\nToken Amount Holding: {TokenHoldingPrice}")
+                            final_list.append(
                                 {
                                     'address': holder['address'],
                                     'TokenAmount': TokenHoldingPrice,
                                     'owner': holder['owner'],
                                 }
-                        )
-                return final_list
+                            )
+                        else:
+                            if verbose:
+                                print(f"Account : {holder['owner']}\nToken Amount Holding: {TokenHoldingPrice}\nCraitera NOT MATCHED")
+                else:
+                    if verbose:
+                        print(f"No 'data' in response for page {i+1}")
+            else:
+                if verbose:
+                    print(f"Failed to fetch page {i+1}: Status code {response.status_code}")
+        if not final_list:
+            print(f"Got No Results for : {address}")
+        return final_list
     except Exception as e:
         print(f"Error : \n{e}")  
