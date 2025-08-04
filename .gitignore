@@ -1,2 +1,4 @@
 .venv
 .env
+HelperFunctions\__pycache__
+CoreFunctions\__pycache__
