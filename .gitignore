@@ -1,9 +1,2 @@
 .venv
 .env
-Core_Traders.py
-curl_command.txt
-solana_trending_meme_addresses.json
-solv2.py
-traders_results.csv
-transaction.json
-valider.py
